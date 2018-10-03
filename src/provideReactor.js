@@ -1,18 +1,19 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import objectAssign from 'object-assign'
 
 function createComponent(Component, additionalContextTypes) {
   var componentName = Component.displayName || Component.name
   var childContextTypes = objectAssign({
-    reactor: React.PropTypes.object.isRequired,
+    reactor: PropTypes.object.isRequired,
   }, additionalContextTypes || {})
 
   var ReactorProvider = React.createClass({
     displayName: 'ReactorProvider(' + componentName + ')',
 
     propTypes: {
-      reactor: React.PropTypes.object.isRequired,
+      reactor: PropTypes.object.isRequired,
     },
 
     childContextTypes: childContextTypes,
@@ -44,12 +45,12 @@ function createComponent(Component, additionalContextTypes) {
  *
  * Example:
  *   var WrappedComponent = provideReactor(Component, {
- *     foo: React.PropTypes.string
+ *     foo: PropTypes.string
  *   });
  *
  * Also supports the decorator pattern:
  *   @provideReactor({
- *     foo: React.PropTypes.string
+ *     foo: PropTypes.string
  *   })
  *   class BaseComponent extends React.Component {
  *     render() {

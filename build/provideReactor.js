@@ -9,6 +9,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _hoistNonReactStatics = require('hoist-non-react-statics');
 
 var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
@@ -20,14 +24,14 @@ var _objectAssign2 = _interopRequireDefault(_objectAssign);
 function createComponent(Component, additionalContextTypes) {
   var componentName = Component.displayName || Component.name;
   var childContextTypes = _objectAssign2['default']({
-    reactor: _react2['default'].PropTypes.object.isRequired
+    reactor: _propTypes2['default'].object.isRequired
   }, additionalContextTypes || {});
 
   var ReactorProvider = _react2['default'].createClass({
     displayName: 'ReactorProvider(' + componentName + ')',
 
     propTypes: {
-      reactor: _react2['default'].PropTypes.object.isRequired
+      reactor: _propTypes2['default'].object.isRequired
     },
 
     childContextTypes: childContextTypes,
@@ -59,12 +63,12 @@ function createComponent(Component, additionalContextTypes) {
  *
  * Example:
  *   var WrappedComponent = provideReactor(Component, {
- *     foo: React.PropTypes.string
+ *     foo: PropTypes.string
  *   });
  *
  * Also supports the decorator pattern:
  *   @provideReactor({
- *     foo: React.PropTypes.string
+ *     foo: PropTypes.string
  *   })
  *   class BaseComponent extends React.Component {
  *     render() {
